@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-backend
+    restart: unless-stopped
+    # Подтягиваем переменные из файла .env автоматически
+    env_file:
+      - .env
+    # Порт наружу НЕ пробрасываем! Доступен только внутри сети app-network
+    expose:
+      - "8000"
+    networks:
+      - app-network
+
+  proxy:
+    image: nginx:1.27-alpine
+    container_name: nginx-proxy
+    restart: unless-stopped
+    # Пробрасываем наружу только стандартный веб-порт 80
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    # Гарантируем, что Nginx запустится только после старта бэкенда
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+# Создаем изолированный виртуальный мост (Bridge)
+networks:
+  app-network:
+    driver: bridge

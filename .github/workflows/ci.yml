@@ -1,0 +1,15 @@
+name: My first Pipeline
+
+#1. КОГДА: при пуше в main
+on:
+  push:
+    branches: ["main"]
+
+#2. ЧТО ДЕЛАТЬ: список задач
+jobs:
+  test-job:
+    runs-on: ububtu-lates #ГДЕ: на чистом Ubuntu в облаке
+    steps:
+      - name: Проверка свзи
+        run: echo "Привет! Пайплайн успешно запущен по коммиту в Git!"
+   

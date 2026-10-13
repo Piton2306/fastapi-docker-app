@@ -8,7 +8,7 @@ on:
 #2. ЧТО ДЕЛАТЬ: список задач
 jobs:
   test-job:
-    runs-on: ubuntu-lates #ГДЕ: на чистом Ubuntu в облаке
+    runs-on: ubuntu-latest #ГДЕ: на чистом Ubuntu в облаке
     steps:
       - name: Проверка свзи
         run: echo "Привет! Пайплайн успешно запущен по коммиту в Git!"

@@ -10,6 +10,12 @@ jobs:
   test-job:
     runs-on: ubuntu-latest #ГДЕ: на чистом Ubuntu в облаке
     steps:
-      - name: Проверка свзи
-        run: echo "Привет! Пайплайн успешно запущен по коммиту в Git!"
+      - name: 1. Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: 2. Установка линтера flake8
+        run: pip install flake8
+
+      - name: 3. Проверка качества кода Python
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
    

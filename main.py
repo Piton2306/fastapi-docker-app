@@ -16,7 +16,7 @@ DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NA
 # Инициализируем пул соединений к СУБД
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 
-@app.get("/"
+@app.get("/")
 def health_check():
     """Эндпоинт проверки жизнеспособности сервиса (Health Check)"""
     return {"status": "ok", "service": "fastapi-backend", "version": "1.0.0"}

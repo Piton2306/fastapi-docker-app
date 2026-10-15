@@ -57,5 +57,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/piton2306/fastapi-docker-app:latest
+            ghcr.io/piton2306/fastapi-docker-app:${{ github.sha }}
